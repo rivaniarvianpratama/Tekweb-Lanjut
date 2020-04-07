@@ -30,7 +30,7 @@ export class MahasiswaComponent implements OnInit {
     //hapus data mahasiswa sesuai nim
     var r = confirm("Anda yakin ingin menghapus data ini secara permanen ?");
     if (r == true) {
-      this.mahasiswaService.hapusData(item.nim).subscribe(res => {
+      this.mahasiswaService.hapusData(item.id).subscribe(res => {
         //memuat ulang data setelah berhasil hapus data
         this.ambilDataMahasiswa();
       });

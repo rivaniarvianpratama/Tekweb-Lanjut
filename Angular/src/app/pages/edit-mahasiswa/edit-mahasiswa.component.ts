@@ -10,7 +10,7 @@ import { MahasiswaService } from '../../services/mahasiswa.service';
 })
 export class EditMahasiswaComponent implements OnInit {
 
-  nim: number;
+  id: number;
   data: Mahasiswa;
 
   constructor(
@@ -22,11 +22,11 @@ export class EditMahasiswaComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.nim = this.activatedRoute.snapshot.params["nim"];
-    //mengambil detail mahasiswa sesuai nim yang di kirim
-    this.mahasiswaService.detailMahasiswa(this.nim).subscribe(res => {
+    this.id = this.activatedRoute.snapshot.params["id"];
+    //mengambil detail mahasiswa sesuai id yang di kirim
+    this.mahasiswaService.detailMahasiswa(this.id).subscribe(res => {
       console.log(res);
-      this.parseData(res);
+      this.data = res;
     })
   }
 
@@ -40,7 +40,7 @@ export class EditMahasiswaComponent implements OnInit {
 
   update() {
     //Update item by taking id and updated data object
-    this.mahasiswaService.editData(this.nim, this.data).subscribe(res => {
+    this.mahasiswaService.editData(this.id, this.data).subscribe(res => {
       this.router.navigate(['mahasiswa']);
     })
   }

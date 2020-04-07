@@ -10,7 +10,8 @@ import { Mahasiswa } from '../models/mahasiswa';
 export class MahasiswaService {
 
   // API path
-  base_path = 'http://localhost/api-service-tekweblanjut/api/mahasiswa';
+  // base_path = 'http://localhost/api-service-tekweblanjut/api/mahasiswa';
+  base_path = 'https://5e8b0014be5500001689e495.mockapi.io';
 
   constructor(private http: HttpClient) { }
 
@@ -41,7 +42,7 @@ export class MahasiswaService {
   // ambil data mahasiswa
   ambilData(): Observable<Mahasiswa> {
     return this.http
-      .get<Mahasiswa>(this.base_path)
+      .get<Mahasiswa>(this.base_path + '/users')
       .pipe(
         retry(2),
         catchError(this.handleError)
@@ -51,7 +52,7 @@ export class MahasiswaService {
   // mengambil data detail mahasiswa sesuai nim
   detailMahasiswa(detail): Observable<Mahasiswa> {
     return this.http
-      .get<Mahasiswa>(this.base_path + '/detail/' + detail)
+      .get<Mahasiswa>(this.base_path + '/users/' + detail)
       .pipe(
         retry(2),
         catchError(this.handleError)
@@ -60,7 +61,7 @@ export class MahasiswaService {
 
   tambahMahasiswa(item): Observable<Mahasiswa> {
     return this.http
-      .post<Mahasiswa>(this.base_path + '/post/', JSON.stringify(item), this.httpOptions)
+      .post<Mahasiswa>(this.base_path + '/users/', JSON.stringify(item), this.httpOptions)
       .pipe(
         retry(2),
         catchError(this.handleError)
@@ -68,20 +69,20 @@ export class MahasiswaService {
   }
 
   // edit data sesuai nim
-  editData(nim, item): Observable<Mahasiswa> {
+  editData(id, item): Observable<Mahasiswa> {
     return this.http
-      .put<Mahasiswa>(this.base_path + '/put/' + nim, JSON.stringify(item), this.httpOptions)
+      .put<Mahasiswa>(this.base_path + '/users/' + id, JSON.stringify(item), this.httpOptions)
       .pipe(
         retry(2),
         catchError(this.handleError)
       )
   }
  
-  // hapus data sesuai nim
-  hapusData(nim) {
-    console.log(nim);
+  // hapus data sesuai id
+  hapusData(id) {
+    console.log(id);
     return this.http
-      .delete<Mahasiswa>(this.base_path + '/hapus/' + nim, this.httpOptions)
+      .delete<Mahasiswa>(this.base_path + '/users/' + id, this.httpOptions)
       .pipe(
         retry(2),
         catchError(this.handleError)

@@ -16,7 +16,7 @@
           <td>{{item.alamat}}</td>
           <td>{{item.jeniskelamin}}</td>
           <td style="display: flex">
-              <button type="button" class="btn btn-warning btn-sm" [routerLink]="[ '/edit-mahasiswa', item.nim]">Edit</button>
+              <button type="button" class="btn btn-warning btn-sm" [routerLink]="[ '/edit-mahasiswa', item.id]">Edit</button>
               <button type="button" class="btn btn-danger btn-sm ml-1" (click)="hapusMahasiswa(item)">Hapus</button>
           </td>
         </tr>

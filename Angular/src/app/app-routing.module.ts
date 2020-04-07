@@ -14,7 +14,7 @@ const routes: Routes = [
     component: TambahMahasiswaComponent
   },
   {
-    path:'edit-mahasiswa/:nim',
+    path:'edit-mahasiswa/:id',
     component: EditMahasiswaComponent
   }
 ];
